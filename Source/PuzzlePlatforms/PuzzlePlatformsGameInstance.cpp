@@ -7,6 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "PlatformTrigger.h"
 #include "MenuSystem/MainMenu.h"
+#include "MenuSystem/MenuWidget.h"
 
 UPuzzlePlatformsGameInstance::UPuzzlePlatformsGameInstance(const FObjectInitializer & ObjectInitializer)
 {
@@ -14,11 +15,19 @@ UPuzzlePlatformsGameInstance::UPuzzlePlatformsGameInstance(const FObjectInitiali
 	if(!ensure(MenuBPClass.Class != nullptr)) return;
 	
 	MenuClass = MenuBPClass.Class;
+	
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> InGameMenuBPClass(TEXT("/Game/MainMenu/WBP_InGameMenu"));
+	if(!ensure(InGameMenuBPClass.Class != nullptr)) return;
+	
+	InGameMenuClass = InGameMenuBPClass.Class;
+	
 }
 
 void UPuzzlePlatformsGameInstance::Init()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Class found %s"), *MenuClass->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("Class found %s"), *InGameMenuClass->GetName());
 }
 
 void UPuzzlePlatformsGameInstance::LoadMenu()
@@ -26,16 +35,25 @@ void UPuzzlePlatformsGameInstance::LoadMenu()
 	if(!ensure(MenuClass != nullptr)) return;
 	Menu = CreateWidget<UMainMenu>(this, MenuClass);
 	if(!ensure(Menu != nullptr)) return;
-
 	Menu->Setup();
 	Menu->SetMenuInterface(this);
+}
+
+void UPuzzlePlatformsGameInstance::InGameLoadMenu()
+{
+
+	if (!ensure(InGameMenuClass != nullptr)) return;
+	InGameMenu = CreateWidget<UMenuWidget>(this, InGameMenuClass);
+	if (!ensure(InGameMenu != nullptr)) return;
+	InGameMenu->Setup();
+	InGameMenu->SetMenuInterface(this);
 }
 
 void UPuzzlePlatformsGameInstance::Host()
 {
 	if (Menu != nullptr)
 	{
-		Menu->TearDown();
+		Menu->Teardown();
 	}
 	
 	UEngine* Engine = GetEngine();
@@ -60,4 +78,12 @@ void UPuzzlePlatformsGameInstance::Join(const FString& Address)
 	if (!ensure(PlayerController != nullptr)) return;
 
 	PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
+}
+
+void UPuzzlePlatformsGameInstance::LoadMainMenu()
+{
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	if (!ensure(PlayerController != nullptr)) return;
+
+	PlayerController->ClientTravel("/Game/MainMenu/MainMenu", ETravelType::TRAVEL_Absolute);
 }

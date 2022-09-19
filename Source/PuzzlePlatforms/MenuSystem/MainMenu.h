@@ -34,10 +34,10 @@ private:
 	class UButton* ConfirmLoadMenuButton;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* OptionsButton;
+	class UButton* SettingsButton;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* CancelOptionsMenuButton;
+	class UButton* CancelSettingsMenuButton;
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* QuitButton;
@@ -46,101 +46,10 @@ private:
 	class UWidget* MainMenu;
 
 	UPROPERTY(meta = (BindWidget))
-	class UWidget* OptionsMenu;
+	class UWidget* SettingsMenu;
 	
 	UPROPERTY(meta = (BindWidget))
 	class UWidget* LoadMenu;
-
-	// OptionsMenu Settings Buttons
-	UPROPERTY(meta = (BindWidget))
-	class UButton* FullScreen;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* Windowed;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* _720x480;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* _1280x720;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* _1920x1080;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* _2560x1440;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* FPS30;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* FPS60;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* FPS120;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* FPSUnlimited;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ViewNear;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ViewMedium;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ViewFar;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ViewEpic;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* PostLow;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* PostMedium;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* PostHigh;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* PostEpic;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* AliasLow;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* AliasMedium;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* AliasHigh;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* AliasEpic;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* TextureLow;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* TextureMedium;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* TextureHigh;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* TextureEpic;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ShadowLow;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ShadowMedium;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ShadowHigh;
-
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ShadowEpic;
 
 	UFUNCTION()
 	void StartGame();
@@ -149,7 +58,7 @@ private:
 	void QuitGame();
 
 	UFUNCTION()
-	void OpenOptionsMenu();
+	void OpenSettingsMenu();
 
 	UFUNCTION()
 	void OpenLoadMenu();
